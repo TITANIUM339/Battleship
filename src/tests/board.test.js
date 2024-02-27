@@ -11,7 +11,7 @@ test("placeShip method places a ship correctly on the board", () => {
         expect(board.board[0][i]).toEqual({
             attacked: false,
             ship: "battleship",
-        });   
+        });
     }
 });
 

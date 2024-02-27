@@ -25,12 +25,12 @@ class GameBoard {
         if (x > 9 || x < 0 || y > 9 || y < 0)
             throw new Error("invalid coordinate");
 
-         if (
-             typeof orientation !== "number" ||
-             orientation < 0 ||
-             orientation > 1
-         )
-             throw new Error("orientation must be a number between 0 - 1");
+        if (
+            typeof orientation !== "number" ||
+            orientation < 0 ||
+            orientation > 1
+        )
+            throw new Error("orientation must be a number between 0 - 1");
 
         for (let i = 0; i < length; i++) {
             if (orientation === 0) {
@@ -58,7 +58,7 @@ class GameBoard {
 
         if (x > 9 || x < 0 || y > 9 || y < 0)
             throw new Error("invalid coordinate");
-        
+
         const position = this.#board[x][y];
 
         if (position.attacked) return false;
@@ -76,7 +76,7 @@ class GameBoard {
         for (const ship in this.#ships) {
             if (this.#ships[ship].isSunk()) count++;
         }
-        
+
         if (count === Object.keys(this.#ships).length) return true;
         return false;
     }
