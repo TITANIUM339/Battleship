@@ -26,21 +26,29 @@ class Player {
     }
 
     attack(coordinate) {
-        let successful = false;
+        let result = 0;
 
         if (this.#isThisPlayer1 && Player.#player1Turn) {
-            successful = Player.#boards.player2.receiveAttack(coordinate);
+            result = Player.#boards.player2.receiveAttack(coordinate);
         } else if (!this.#isThisPlayer1 && Player.#player2Turn) {
-            successful = Player.#boards.player1.receiveAttack(coordinate);
+            result = Player.#boards.player1.receiveAttack(coordinate);
         }
 
-        if (successful) {
+        if (result) {
             const tmp = Player.#player1Turn;
             Player.#player1Turn = Player.#player2Turn;
             Player.#player2Turn = tmp;
         }
 
-        return successful;
+        return result;
+    }
+
+    enemyUnSunkShips() {
+        if (this.#isThisPlayer1) {
+            return Player.#boards.player2.unSunkShips();
+        }
+
+        return Player.#boards.player1.unSunkShips();
     }
 
     get name() {
