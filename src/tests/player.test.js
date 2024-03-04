@@ -56,5 +56,5 @@ test("it is player2's turn", () => {
 test("player1 cant shoot the same coordinate twice", () => {
     player2.attack([0, 0]);
 
-    expect(player1.attack([0, 0])).toBe(false);
+    expect(player1.attack([0, 0])).toBe(0);
 });
