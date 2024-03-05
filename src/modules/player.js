@@ -25,6 +25,11 @@ class Player {
         }
     }
 
+    static clearBoards() {
+        this.#boards.player1 = null;
+        this.#boards.player2 = null;
+    }
+
     attack(coordinate) {
         let result = 0;
 
