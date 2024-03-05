@@ -92,27 +92,31 @@ class Computer {
 
         if (result) this.#board[x][y] = false;
 
-        if (result === 3) {
-            let sunkShipLength;
+        switch (result) {
+            case 3: {
+                let sunkShipLength;
 
-            for (let i = 0; i < enemyShipsBeforeAttack.length; i++) {
-                if (
-                    i === enemyShipsAfterAttack.length ||
-                    enemyShipsBeforeAttack[i][0] !== enemyShipsAfterAttack[i][0]
-                ) {
-                    sunkShipLength = enemyShipsBeforeAttack[i][1];
+                for (let i = 0; i < enemyShipsBeforeAttack.length; i++) {
+                    if (
+                        i === enemyShipsAfterAttack.length ||
+                        enemyShipsBeforeAttack[i][0] !==
+                            enemyShipsAfterAttack[i][0]
+                    ) {
+                        sunkShipLength = enemyShipsBeforeAttack[i][1];
+                    }
                 }
+
+                const spliceValue = this.#hits.length - sunkShipLength + 1;
+                this.#hits.splice(spliceValue);
+
+                this.#checkerboard = this.#calculateCheckerBoard();
+
+                this.#destroyingShip = false;
+                this.#firstHit = this.#secondHit = null;
+                break;
             }
-
-            const spliceValue = this.#hits.length - sunkShipLength + 1;
-            this.#hits.splice(spliceValue);
-
-            this.#checkerboard = this.#calculateCheckerBoard();
-
-            this.#destroyingShip = false;
-            this.#firstHit = this.#secondHit = null;
-        } else if (result === 2) {
-            this.#hits.push(coordinate);
+            case 2:
+                this.#hits.push(coordinate);
         }
 
         return result;
