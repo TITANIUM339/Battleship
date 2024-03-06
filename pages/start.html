@@ -1,0 +1,41 @@
+<div class="start">
+    <form>
+        <div class="players">
+            <div>
+                <div class="name-container">
+                    <label for="player1">Player 1</label>
+                    <input
+                        type="text"
+                        placeholder="name"
+                        value="Player1"
+                        id="player1"
+                        onclick="this.select()"
+                        required
+                    />
+                </div>
+                <div class="checkbox-container">
+                    <label for="computer1">Computer</label>
+                    <input type="checkbox" name="type" id="computer1" />
+                </div>
+            </div>
+            <div>
+                <div class="name-container">
+                    <label for="player2">Player 2</label>
+                    <input
+                        type="text"
+                        placeholder="name"
+                        value="Player2"
+                        id="player2"
+                        onclick="this.select()"
+                        required
+                    />
+                </div>
+                <div class="checkbox-container">
+                    <label for="computer2">Computer</label>
+                    <input type="checkbox" name="type" id="computer2" checked />
+                </div>
+            </div>
+        </div>
+        <button type="submit">Start</button>
+    </form>
+</div>
