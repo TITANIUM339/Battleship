@@ -1,0 +1,55 @@
+.start {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Silkscreen;
+}
+
+.start > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.players {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.name-container > label {
+    font-size: 1.4rem;
+}
+
+.name-container,
+.players > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+input[type="text"] {
+    background-color: var(--gallery);
+    outline-color: var(--ripe-lemon);
+    border: 0.15rem solid var(--cello);
+    border-radius: 2px;
+    max-width: 400px;
+    width: 100%;
+    padding: 5px;
+}
+
+form > button {
+    padding: 5px 40px 5px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}

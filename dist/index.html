@@ -4,7 +4,50 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script defer src="./main.js"></script>
+        <link rel="stylesheet" href="./styles/reset.css" />
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./styles/start.css" />
+        <link rel="stylesheet" href="./styles/board.css" />
+        <link rel="stylesheet" href="./styles/configure.css" />
+        <link rel="stylesheet" href="./styles/game.css" />
+        <link rel="icon" href="./assets/images/anchor-solid.svg" />
         <title>Battleship</title>
     </head>
-    <body></body>
+    <body>
+        <header>
+            <div class="logo">
+                <h1>Battleship</h1>
+            </div>
+            <div class="info">
+                <button>
+                    <span>
+                        <svg width="24" height="24" fill="currentColor">
+                            <use
+                                xlink:href="./assets/images/icons.svg#lightbulb-regular"
+                            />
+                        </svg>
+                    </span>
+                    <span>Tips</span>
+                </button>
+            </div>
+        </header>
+        <main>
+            <div class="message"></div>
+            <div class="content"></div>
+        </main>
+        <footer>
+            <span class="copyright"></span>
+            <span class="github">
+                <a href="https://github.com/TITANIUM339" target="_blank">
+                    <svg width="16" height="16" fill="currentColor">
+                        <use xlink:href="./assets/images/icons.svg#github" />
+                    </svg>
+                </a>
+            </span>
+            <script>
+                document.querySelector(".copyright").innerHTML =
+                    `Copyright &#169; TITANIUM339 ${new Date().getFullYear()}`;
+            </script>
+        </footer>
+    </body>
 </html>
