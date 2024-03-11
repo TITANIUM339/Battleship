@@ -1,0 +1,62 @@
+.board {
+    aspect-ratio: 1 / 1;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr;
+}
+
+.letters {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    place-items: center;
+}
+
+.numbers {
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    place-items: center;
+    line-height: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.cell {
+    background: none;
+    border: 1px solid black;
+    display: grid;
+    place-items: center;
+    cursor: crosshair;
+}
+
+.occupied {
+    background-color: var(--gallery);
+    box-shadow: 5px 5px 15px var(--cello) inset;
+}
+
+.valid {
+    background-color: rgba(0, 255, 0, 0.4);
+}
+
+.invalid {
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.hit {
+    background-color: var(--ripe-lemon);
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+}
+
+.miss {
+    background-color: var(--cello);
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+}
