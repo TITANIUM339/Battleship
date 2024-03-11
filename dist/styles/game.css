@@ -1,0 +1,32 @@
+.game {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    gap: 20px;
+}
+
+.player1,
+.player2 {
+    flex: 1;
+    align-self: center;
+}
+
+.restart {
+    justify-self: center;
+    font-family: Silkscreen;
+    padding: 5px 40px 5px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.toggle-board {
+    font-family: Silkscreen;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.hide {
+    display: none;
+}
