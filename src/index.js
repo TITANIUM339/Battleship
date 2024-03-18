@@ -39,4 +39,6 @@ import { Player } from "./modules/player";
             },
         );
     }
-})();
+})().catch((error) => {
+    alert(error + ". Try refreshing the page");
+});

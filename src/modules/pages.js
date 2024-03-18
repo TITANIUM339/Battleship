@@ -8,7 +8,14 @@ const pages = (() => {
     const message = document.querySelector(".message");
 
     async function loadStart() {
-        content.innerHTML = await (await fetch("./pages/start.html")).text();
+        try {
+            content.innerHTML = await (
+                await fetch("./pages/start.html")
+            ).text();    
+        } catch {
+            return Promise.reject("Network Error");
+        }
+
         message.innerText = "";
 
         const player1 = content.querySelector("#player1");
@@ -156,9 +163,13 @@ const pages = (() => {
     }
 
     async function loadConfigure(name, ships) {
-        content.innerHTML = await (
-            await fetch("./pages/configure.html")
-        ).text();
+        try {
+            content.innerHTML = await (
+                await fetch("./pages/configure.html")
+            ).text();
+        } catch {
+            return Promise.reject("Network Error");
+        }
 
         message.innerText = `Configure your fleet, ${name}`;
 
@@ -362,7 +373,13 @@ const pages = (() => {
         { player1, player1Board, computer1 },
         { player2, player2Board, computer2 },
     ) {
-        content.innerHTML = await (await fetch("./pages/game.html")).text();
+        try {
+            content.innerHTML = await (
+                await fetch("./pages/game.html")
+            ).text();
+        } catch {
+            return Promise.reject("Network Error");
+        }
 
         content
             .querySelector(".player1 > .board-container")
