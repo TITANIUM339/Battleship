@@ -28,15 +28,17 @@ class Player {
     static clearBoards() {
         this.#boards.player1 = null;
         this.#boards.player2 = null;
+        this.#player1Turn = true;
+        this.#player2Turn = false;
     }
 
     attack(coordinate) {
         let result = 0;
 
         if (this.#isThisPlayer1 && Player.#player1Turn) {
-            result = Player.#boards.player2.receiveAttack(coordinate);
+            result = Player.#boards.player2?.receiveAttack(coordinate) || 0;
         } else if (!this.#isThisPlayer1 && Player.#player2Turn) {
-            result = Player.#boards.player1.receiveAttack(coordinate);
+            result = Player.#boards.player1?.receiveAttack(coordinate) || 0;
         }
 
         if (result) {
@@ -48,12 +50,20 @@ class Player {
         return result;
     }
 
-    enemyUnSunkShips() {
+    get enemyUnSunkShips() {
         if (this.#isThisPlayer1) {
-            return Player.#boards.player2.unSunkShips();
+            return Player.#boards.player2.unSunkShips;
         }
 
-        return Player.#boards.player1.unSunkShips();
+        return Player.#boards.player1.unSunkShips;
+    }
+
+    get enemySunkShips() {
+        if (this.#isThisPlayer1) {
+            return Player.#boards.player2.sunkShips;
+        }
+
+        return Player.#boards.player1.sunkShips;
     }
 
     get name() {
