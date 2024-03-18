@@ -3,6 +3,8 @@ import { Ship } from "./ship";
 class GameBoard {
     #board = [];
     #ships = {};
+    #unSunkShips = [];
+    #sunkShips = [];
 
     constructor() {
         for (let i = 0; i < 10; i++) {
@@ -30,20 +32,23 @@ class GameBoard {
 
         if (
             typeof orientation !== "number" ||
-            orientation < HORIZONTAL ||
-            orientation > VERTICAL
+            (orientation !== HORIZONTAL && orientation !== VERTICAL)
         )
-            throw new Error("orientation must be a number between 0 - 1");
+            throw new Error("orientation must be 0 or 1");
 
         for (let i = 0; i < length; i++) {
             if (orientation === HORIZONTAL) {
-                if (this.#board[x + i][y].ship !== null) return false;
+                if (x + i > 9 || this.#board[x + i][y].ship !== null)
+                    return false;
             } else {
-                if (this.#board[x][y + i].ship !== null) return false;
+                if (y + i > 9 || this.#board[x][y + i].ship !== null)
+                    return false;
             }
         }
 
         this.#ships[name] = new Ship(length);
+
+        this.#unSunkShips.push([name, length]);
 
         for (let i = 0; i < length; i++) {
             if (orientation === 0) {
@@ -75,7 +80,25 @@ class GameBoard {
         if (position.ship !== null) {
             this.#ships[position.ship].hit();
 
-            if (this.#ships[position.ship].isSunk()) return SUNK;
+            if (this.#ships[position.ship].isSunk()) {
+                const coordinates = [];
+
+                for (let y = 0; y < 10; y++) {
+                    for (let x = 0; x < 10; x++) {
+                        if (this.#board[x][y].ship === position.ship)
+                            coordinates.push([x, y]);
+                    }
+                }
+
+                for (let i = 0; i < this.#unSunkShips.length; i++) {
+                    if (this.#unSunkShips[i][0] === position.ship)
+                        this.#unSunkShips.splice(i, 1);
+                }
+
+                this.#sunkShips.push([position.ship, coordinates]);
+
+                return SUNK;
+            }
 
             return HIT;
         }
@@ -95,16 +118,12 @@ class GameBoard {
         return false;
     }
 
-    unSunkShips() {
-        const ships = [];
+    get unSunkShips() {
+        return JSON.parse(JSON.stringify(this.#unSunkShips));
+    }
 
-        for (const ship in this.#ships) {
-            if (!this.#ships[ship].isSunk()) {
-                ships.push([ship, this.#ships[ship].length]);
-            }
-        }
-
-        return ships;
+    get sunkShips() {
+        return JSON.parse(JSON.stringify(this.#sunkShips));
     }
 
     get board() {
@@ -112,4 +131,39 @@ class GameBoard {
     }
 }
 
-export { GameBoard };
+function generateRandomBoard(ships) {
+    const coordinates = [];
+
+    for (let y = 0; y < 10; y++) {
+        for (let x = 0; x < 10; x++) {
+            coordinates.push([x, y]);
+        }
+    }
+
+    let index = 0;
+
+    const board = new GameBoard();
+
+    do {
+        const coordinate = coordinates.splice(
+            Math.floor(Math.random() * coordinates.length),
+            1,
+        )[0];
+        const orientation = Math.floor(Math.random() * 2);
+
+        if (
+            board.placeShip(
+                ships[index].ship,
+                coordinate,
+                orientation,
+                ships[index].length,
+            )
+        ) {
+            index++;
+        }
+    } while (index !== ships.length);
+
+    return board;
+}
+
+export { GameBoard, generateRandomBoard };
