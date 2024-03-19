@@ -3,6 +3,16 @@ import { generateRandomBoard } from "./modules/board";
 import { Player } from "./modules/player";
 
 (async () => {
+    const card = document.querySelector(".card");
+    
+    document.querySelector(".info-button").addEventListener("click", () => {
+        card.classList.remove("hide");
+    });
+
+    document.querySelector(".close").addEventListener("click", () => {
+        card.classList.add("hide");
+    });
+
     const ships = [
         { ship: "carrier", length: 5 },
         { ship: "battleship", length: 4 },
