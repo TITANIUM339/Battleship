@@ -4,7 +4,7 @@ import { Player } from "./modules/player";
 
 (async () => {
     const card = document.querySelector(".card");
-    
+
     document.querySelector(".info-button").addEventListener("click", () => {
         card.classList.remove("hide");
     });

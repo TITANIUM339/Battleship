@@ -11,7 +11,7 @@ const pages = (() => {
         try {
             content.innerHTML = await (
                 await fetch("./pages/start.html")
-            ).text();    
+            ).text();
         } catch {
             return Promise.reject("Network Error");
         }
@@ -374,9 +374,7 @@ const pages = (() => {
         { player2, player2Board, computer2 },
     ) {
         try {
-            content.innerHTML = await (
-                await fetch("./pages/game.html")
-            ).text();
+            content.innerHTML = await (await fetch("./pages/game.html")).text();
         } catch {
             return Promise.reject("Network Error");
         }
