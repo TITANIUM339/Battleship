@@ -57,8 +57,7 @@ footer {
     gap: 6px;
 }
 
-:visited,
-:link {
+:any-link {
     color: inherit;
 }
 
@@ -82,7 +81,7 @@ footer {
     color: var(--ripe-lemon);
 }
 
-.info > button {
+.info-container > button {
     background: none;
     border: none;
     color: white;
@@ -91,6 +90,55 @@ footer {
     gap: 4px;
     font-size: 1.1rem;
     font-weight: 500;
+}
+
+.card {
+    z-index: 1;
+    position: fixed;
+    background: var(--gallery);
+    color: black;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    padding: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    min-width: 250px;
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    gap: 5px;
+    max-height: 80dvh;
+}
+
+.close {
+    aspect-ratio: 1 / 1;
+    width: 2rem;
+    justify-self: end;
+}
+
+.info {
+    overflow-y: auto;
+}
+
+.example {
+    display: inline-flex;
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+ul {
+    padding-left: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+h3 {
+    color: var(--cello);
+}
+
+li > :any-link {
+    color: var(--ripe-lemon);
 }
 
 @media (hover: hover) {
