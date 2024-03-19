@@ -19,8 +19,8 @@ test("creating a computer with a player object that is not an instance of Player
     expect(() => new Computer({})).toThrow;
 });
 
-test("computer shoots randomly in a checkerboard pattern where the space between squares depends on the enemy's largest un-sunk ship size", () => {
-    computer.play();
+test("computer shoots randomly in a checkerboard pattern where the space between squares depends on the enemy's largest un-sunk ship size", async () => {
+    await computer.play();
 
     let x = 0,
         y = 0,
@@ -47,13 +47,13 @@ test("computer shoots randomly in a checkerboard pattern where the space between
 });
 
 // There is a very small chance that this test will fail and that is because in the test before it the computer makes a random move which could land on [9, 9].
-test("given a coordinate of an enemy ship the computer will sink that ship in the span of at least 4 rounds", () => {
+test("given a coordinate of an enemy ship the computer will sink that ship in the span of at least 4 rounds", async () => {
     player2.attack([9, 9]);
-    computer.play([0, 0]);
+    await computer.play([0, 0]);
 
     for (let i = 0; i < 4; i++) {
         player2.attack([i, 0]);
-        computer.play();
+        await computer.play();
     }
 
     expect(player2Board.allShipsAreSunk()).toBe(true);
